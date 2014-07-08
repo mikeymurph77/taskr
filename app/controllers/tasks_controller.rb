@@ -5,9 +5,15 @@ class TasksController < ApplicationController
 	end
 
 	def create
-		current_user.tasks.create(task_params)
+		@task =current_user.tasks.build(task_params)
+		@tasks = current_user.tasks
 
-		redirect_to :tasks
+		if @task.save
+			redirect_to :tasks
+		else
+			render :index
+		end
+		
 	end
 
 	private
