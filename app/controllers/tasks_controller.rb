@@ -1,11 +1,11 @@
 class TasksController < ApplicationController
 	def index
 		@task = Task.new
-		@tasks = current_user.tasks
+		@tasks = current_user.tasks.not_completed
 	end
 
 	def create
-		@task =current_user.tasks.build(task_params)
+		@task = current_user.tasks.build(task_params)
 		@tasks = current_user.tasks
 
 		if @task.save
@@ -13,7 +13,6 @@ class TasksController < ApplicationController
 		else
 			render :index
 		end
-		
 	end
 
 	private
