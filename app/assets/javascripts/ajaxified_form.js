@@ -15,10 +15,7 @@ $(function(){
     return false;
 	});
 
-  $(".completed_checkbox").click(completedTask);
-  $("ul").on( "click", ".completed_checkbox", completedTask);
-
-
+  $("ul").on("click", ".completed_checkbox", completedTask);
 
   function completedTask(event){
     var formEl = $(event.target).parents("form");
@@ -30,5 +27,20 @@ $(function(){
       formEl.parents("li").fadeOut();
     });
   };
+
+
+    $(".delete").click(function(event){
+      $(event.target).hide();
+      $(".options").show();
+
+      return false;
+    });
+
+    $(".cancel").click(function(){
+      $(".options").hide();
+      $(".delete").show();
+
+      return false;
+    });
 
 });
