@@ -17,12 +17,21 @@ class TasksController < ApplicationController
 		end
 	end
 
+	def update
+		task = current_user.tasks.find(params[:id])
+
+		if task.update(task_params)
+			render nothing: true, status: 200
+		end
+	end
+
 	private
 
 	def task_params
 		params.require(:task).permit(
 			:title,
 			:body,
+			:completed,
 		)
 		
 	end
