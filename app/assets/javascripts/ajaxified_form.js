@@ -15,7 +15,12 @@ $(function(){
     return false;
 	});
 
-  $(".completed_checkbox").click(function(event){
+  $(".completed_checkbox").click(completedTask);
+  $("ul").on( "click", ".completed_checkbox", completedTask);
+
+
+
+  function completedTask(event){
     var formEl = $(event.target).parents("form");
     $.ajax({
       url: formEl.prop("action"),
@@ -24,6 +29,6 @@ $(function(){
     }).done(function(){
       formEl.parents("li").fadeOut();
     });
-  });
+  };
 
 });
